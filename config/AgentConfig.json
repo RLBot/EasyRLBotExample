@@ -1,0 +1,5 @@
+{
+  "port": 3215,
+  "autoStart": true,
+  "startCommand": "start /wait cmd /C npm start"
+}
