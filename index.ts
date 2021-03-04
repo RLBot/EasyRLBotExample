@@ -8,7 +8,7 @@ const {
   Physics,
   BallState,
   GameState,
-} = require("EasyRLBot/dist/small.js");
+} = require("EasyRLBot");
 
 class ExampleBot extends Client {
   constructor(...args) {
