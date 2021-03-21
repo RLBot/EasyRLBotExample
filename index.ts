@@ -19,19 +19,28 @@ class ExampleBot extends Client {
 
     if (!ballPrediction || !gameTickPacket.players[this.botIndex]) return; // Return if needed information is not provided
 
-    let targetLocation = gameTickPacket.ball.physics.location; // Set targeted location to ball
-    let carLocation = gameTickPacket.players[this.botIndex].physics.location;
-    let carRotation = gameTickPacket.players[this.botIndex].physics.rotation;
+    // Define target and car physics
+    let target = gameTickPacket.ball.physics; // Set targeted location to ball
+    let car = gameTickPacket.players[this.botIndex].physics;
 
+    // Calculate angle
     let botToTargetAngle = Math.atan2(
-      targetLocation.y - carLocation.y,
-      targetLocation.x - carLocation.x
+      target.location.y - car.location.y,
+      target.location.x - car.location.x
     );
-    let botFrontToTargetAngle = botToTargetAngle - carRotation.yaw;
+
+    // Angle relative to car
+    let botFrontToTargetAngle = botToTargetAngle - car.rotation.yaw;
+
+    // Correct angle
+    if (botFrontToTargetAngle > Math.PI) botFrontToTargetAngle -= 2 * Math.PI;
+    if (botFrontToTargetAngle < -Math.PI) botFrontToTargetAngle += 2 * Math.PI;
+
+    // Calculate distance in 2D between car and ball
     let targetDistance2D = Math.round(
       Math.sqrt(
-        Math.pow(targetLocation.x - carLocation.x, 2) +
-          Math.pow(targetLocation.y - carLocation.y, 2)
+        Math.pow(target.location.x - car.location.x, 2) +
+          Math.pow(target.location.y - car.location.y, 2)
       )
     );
 
