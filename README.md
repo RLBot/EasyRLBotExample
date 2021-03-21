@@ -2,9 +2,13 @@
 
 This is a example of RLBot in node.js using the EasyRLBot library.
 
-## Setup
+## Setup / Installation
 
-Clone this repo and cd into it. Make sure you have node.js and npm installed and then type `npm i` into the console. You can now add the bot.cfg in the RLBotGui and it will automatically start your typescript file using `ts-node`.
+First make sure you have node.js and npm installed (in your path). Then follow the steps below.
+
+1. Clone this repo and cd into it
+2. Install dependencies using npm. (`npm i`)
+3. Add bot.cfg in RLBotGUI
 
 ## EasyRLBot documentation
 
