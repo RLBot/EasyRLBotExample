@@ -1,20 +1,21 @@
-const {
+import {
   Client,
-  Controller,
-  Color,
-  Vector3,
   Manager,
-  quickChats,
-  Physics,
-  BallState,
-  GameState,
-} = require("EasyRLBot");
+  Controller,
+  GameTickPacket,
+  FieldInfo,
+  BallPrediction,
+} from "EasyRLBot";
 
 class ExampleBot extends Client {
-  constructor(...args) {
-    super(...args); // Do not change this except if you know what you are doing.
+  constructor(botIndex: number, ...args) {
+    super(botIndex, ...args); // Do not change this except if you know what you are doing.
   }
-  getOutput(gameTickPacket, fieldInfo, ballPrediction) {
+  getOutput(
+    gameTickPacket: GameTickPacket,
+    fieldInfo: FieldInfo,
+    ballPrediction: BallPrediction
+  ) {
     let controller = new Controller(); // Create a new controller
 
     if (!ballPrediction || !gameTickPacket.players[this.botIndex]) return; // Return if needed information is not provided
