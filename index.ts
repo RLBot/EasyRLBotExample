@@ -5,7 +5,7 @@ import {
   GameTickPacketT,
   FieldInfoT,
   BallPredictionT,
-} from "../EasyRLBot";
+} from "easyrlbot";
 
 class ExampleBot extends Client {
   constructor(botIndex: number, ...args: any[]) {
