@@ -12,4 +12,4 @@ First make sure you have node.js and npm installed (in your path). Then follow t
 
 ## EasyRLBot documentation
 
-[github.com/SWZ-github/EasyRLBot/wiki](https://github.com/SWZ-github/EasyRLBot/wiki)
+[github.com/swz-git/EasyRLBot/wiki](https://github.com/swz-git/EasyRLBot/wiki)
