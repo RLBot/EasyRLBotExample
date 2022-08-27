@@ -2,27 +2,35 @@ import {
   Client,
   Manager,
   Controller,
-  GameTickPacket,
-  FieldInfo,
-  BallPrediction,
-} from "EasyRLBot";
+  GameTickPacketT,
+  FieldInfoT,
+  BallPredictionT,
+} from "../EasyRLBot";
 
 class ExampleBot extends Client {
-  constructor(botIndex: number, ...args) {
+  constructor(botIndex: number, ...args: any[]) {
     super(botIndex, ...args); // Do not change this except if you know what you are doing.
   }
   getOutput(
-    gameTickPacket: GameTickPacket,
-    fieldInfo: FieldInfo,
-    ballPrediction: BallPrediction
+    gameTickPacket: GameTickPacketT,
+    fieldInfo: FieldInfoT,
+    ballPrediction: BallPredictionT
   ) {
     let controller = new Controller(); // Create a new controller
 
-    if (!ballPrediction || !gameTickPacket.players[this.botIndex]) return; // Return if needed information is not provided
+    if (
+      !ballPrediction ||
+      !gameTickPacket.players[this.botIndex] ||
+      !gameTickPacket.ball ||
+      !gameTickPacket.ball.physics?.location
+    )
+      return; // Return if needed information is not provided
 
     // Define target and car physics
     let target = gameTickPacket.ball.physics; // Set targeted location to ball
     let car = gameTickPacket.players[this.botIndex].physics;
+
+    if (!target.location || !car?.location || !car.rotation) return; // Return if needed information is not provided
 
     // Calculate angle
     let botToTargetAngle = Math.atan2(
